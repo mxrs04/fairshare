@@ -3,8 +3,9 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  // WICHTIG FÜR GITHUB PAGES: Macht alle Pfade relativ
+  base: './',
   plugins: [
-    base: './',
     react(),
     VitePWA({
       registerType: 'autoUpdate',
@@ -16,18 +17,20 @@ export default defineConfig({
         theme_color: '#18181b',
         background_color: '#18181b',
         display: 'standalone',
-        scope: '/',
-        start_url: '/',
+        // WICHTIG: Hier auch relative Pfade nutzen!
+        scope: './',
+        start_url: './',
         orientation: 'portrait',
         icons: [
           {
-            src: '/vite.svg',
+            // Slash am Anfang entfernt, damit er im aktuellen Ordner sucht
+            src: 'vite.svg',
             sizes: '192x192',
             type: 'image/svg+xml',
             purpose: 'any maskable'
           },
           {
-            src: '/vite.svg',
+            src: 'vite.svg',
             sizes: '512x512',
             type: 'image/svg+xml',
             purpose: 'any maskable'
